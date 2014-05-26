@@ -72,24 +72,14 @@ class CountComparisons {
 	}
 	
 	private static int partition2(int[] array, int start, int end) {
-		int pivot = array[end];
-		int i = start, j = start;
-		while(j < end) {
-			if(array[j] < pivot) {
-				swap(array, i++, j);
-			}
-			j++;
-		}
-		swap(array, end, i);
-		return i;
+		swap(array, start, end);
+		return partition(array, start, end);
 	}
 	
 	private static void medianOfThree(int[] array, int start, int end) {
 		int length = end - start + 1;
 		if(length < 3) return;
 		int mid = start + (end - start) / 2;
-		if(length % 2 == 0)	// even
-			mid--;
 		int max = Math.max(array[start], Math.max(array[mid], array[end]));
 		int min = Math.min(array[start], Math.min(array[mid], array[end]));
 		if(array[mid] > min && array[mid] < max)
@@ -108,9 +98,9 @@ class CountComparisons {
 		// Question 1
 		//int p = partition(array, start, end);
 		// Question 2
-		int p = partition2(array, start, end);
+		//int p = partition2(array, start, end);
 		// Question 3
-		//int p = partition3(array, start, end);
+		int p = partition3(array, start, end);
 		long comparisons = end - start;
 		comparisons += quickSort(array, start, p - 1);
 		comparisons += quickSort(array, p + 1, end);
