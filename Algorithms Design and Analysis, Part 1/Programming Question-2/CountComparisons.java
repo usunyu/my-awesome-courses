@@ -46,6 +46,7 @@ your running total of comparisons every time you recurse on a subarray with leng
 */
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 
 class CountComparisons {
@@ -69,10 +70,47 @@ class CountComparisons {
 		swap(array, start, i - 1);
 		return i - 1;
 	}
+	
+	private static int partition2(int[] array, int start, int end) {
+		int pivot = array[end];
+		int i = start, j = start;
+		while(j < end) {
+			if(array[j] < pivot) {
+				swap(array, i++, j);
+			}
+			j++;
+		}
+		swap(array, end, i);
+		return i - 1;
+	}
+	
+	private static void medianOfThree(int[] array, int start, int end) {
+		int length = end - start + 1;
+		if(length < 3) return;
+		int mid = start + (end - start) / 2;
+		if(length % 2 == 0)	// even
+			mid--;
+		int max = Math.max(array[start], Math.max(array[mid], array[end]));
+		int min = Math.min(array[start], Math.min(array[mid], array[end]));
+		if(array[mid] > min && array[mid] < max)
+			swap(array, mid, start);
+		else if(array[end] > min && array[end] < max)
+			swap(array, end, start);
+	}
+	
+	private static int partition3(int[] array, int start, int end) {
+		medianOfThree(array, start, end);
+		return partition(array, start, end);
+	}
 
 	private static long quickSort(int[] array, int start, int end) {
 		if(end <= start) return 0;
-		int p = partition(array, start, end);
+		// Question 1
+		//int p = partition(array, start, end);
+		// Question 2
+		//int p = partition2(array, start, end);
+		// Question 3
+		int p = partition3(array, start, end);
 		long comparisons = end - start;
 		comparisons += quickSort(array, start, p);
 		comparisons += quickSort(array, p + 1, end);
@@ -105,6 +143,7 @@ class CountComparisons {
 		}
 		
 		int[] array = input(args[0]);
+		//int[] array = {21,3,34,5,13,8,2,55,1,19};
 		//System.out.println(Arrays.toString(array));
 		
 		long comp = quickSort(array);
