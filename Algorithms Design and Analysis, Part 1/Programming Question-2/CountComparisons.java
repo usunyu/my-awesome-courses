@@ -81,7 +81,7 @@ class CountComparisons {
 			j++;
 		}
 		swap(array, end, i);
-		return i - 1;
+		return i;
 	}
 	
 	private static void medianOfThree(int[] array, int start, int end) {
@@ -108,11 +108,11 @@ class CountComparisons {
 		// Question 1
 		//int p = partition(array, start, end);
 		// Question 2
-		//int p = partition2(array, start, end);
+		int p = partition2(array, start, end);
 		// Question 3
-		int p = partition3(array, start, end);
+		//int p = partition3(array, start, end);
 		long comparisons = end - start;
-		comparisons += quickSort(array, start, p);
+		comparisons += quickSort(array, start, p - 1);
 		comparisons += quickSort(array, p + 1, end);
 		return comparisons;
 	}
@@ -144,10 +144,10 @@ class CountComparisons {
 		
 		int[] array = input(args[0]);
 		//int[] array = {21,3,34,5,13,8,2,55,1,19};
-		//System.out.println(Arrays.toString(array));
+		System.out.println(Arrays.toString(array));
 		
 		long comp = quickSort(array);
-		//System.out.println(Arrays.toString(array));
+		System.out.println(Arrays.toString(array));
 		
 		System.out.println(comp);
 	}
