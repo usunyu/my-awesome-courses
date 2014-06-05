@@ -28,7 +28,7 @@ public class Graph {
 			System.out.print(vertex.data + "\t");
 			Edge edge = vertex.firstArc;
 			while(edge != null) {
-				System.out.print((edge.index + 1) + "\t");
+				System.out.print(edge.to + "\t");
 				edge = edge.nextArc;
 			}
 			System.out.println();

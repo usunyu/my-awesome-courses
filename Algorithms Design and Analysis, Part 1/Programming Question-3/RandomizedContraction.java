@@ -13,7 +13,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class RandomizedContraction {
+class RandomizedContraction {
 	private static int DefaultSize = 200;
 	
 	public static Graph input(String path) {
@@ -38,6 +38,11 @@ public class RandomizedContraction {
 		}
 		return graph;
 	}
+	
+	public static int randomizedContraction(Graph graph) {
+		
+		return 0;
+	}
 
 	public static void main(String[] args) {
 		if (args.length == 0) {
@@ -46,6 +51,6 @@ public class RandomizedContraction {
 		}
 		Graph graph = input(args[0]);
 		// graph.print();
-		
+		System.out.println(randomizedContraction(graph));
 	}
 }

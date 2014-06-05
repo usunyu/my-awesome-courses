@@ -1,10 +1,11 @@
 
 public class Edge {
-	int index;
-	
+	int from;
+	int to;
 	Edge nextArc;
 	
-	public Edge(int index) {
-		this.index = index;
+	public Edge(int from, int to) {
+		this.from = from;
+		this.to = to;
 	}
 }
