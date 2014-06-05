@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Vertex {
 	int data;
-	
 	Edge firstArc;
 	
 	public Vertex(int data) {

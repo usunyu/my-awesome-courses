@@ -6,6 +6,32 @@ whether they include both vertices and edges or only vertices as first class obj
 objects are used to represent the vertices and edges.
 */
 
+import java.util.ArrayList;
+
 public class Graph {
+	private Vertex[] vertexs;
 	
+	public Graph(int size) {
+		vertexs = new Vertex[size];
+	}
+	
+	public void addVertex(int data) {
+		vertexs[data - 1] = new Vertex(data);
+	}
+	
+	public void addEdges(int index, ArrayList<Integer> edges) {
+		vertexs[index].addEdges(edges);
+	}
+	
+	public void print() {
+		for(Vertex vertex : vertexs) {
+			System.out.print(vertex.data + "\t");
+			Edge edge = vertex.firstArc;
+			while(edge != null) {
+				System.out.print((edge.index + 1) + "\t");
+				edge = edge.nextArc;
+			}
+			System.out.println();
+		}
+	}
 }
