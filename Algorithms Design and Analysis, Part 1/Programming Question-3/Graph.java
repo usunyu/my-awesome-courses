@@ -23,13 +23,17 @@ public class Graph {
 		vertexs[index].addEdges(edges);
 	}
 	
+	public Vertex[] getVertexs() {
+		return vertexs;
+	}
+	
 	public void print() {
 		for(Vertex vertex : vertexs) {
 			System.out.print(vertex.data + "\t");
-			Edge edge = vertex.firstArc;
+			Edge edge = vertex.getFirstArc();
 			while(edge != null) {
-				System.out.print(edge.to + "\t");
-				edge = edge.nextArc;
+				System.out.print(edge.getToVertex() + "\t");
+				edge = edge.getNextArc();
 			}
 			System.out.println();
 		}

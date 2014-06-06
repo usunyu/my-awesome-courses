@@ -13,13 +13,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-class RandomizedContraction {
+public class RandomizedContraction {
 	private static int DefaultSize = 200;
+	private static Graph graph;					// hold input graph
+	private static ArrayList<Edge> edgePool;	// edges for random select
 	
-	public static Graph input(String path) {
+	public static void input(String path) {
 		BufferedReader br = null;
 		String line = null;
-		Graph graph = new Graph(DefaultSize);
+		graph = new Graph(DefaultSize);
 		try {
 			br = new BufferedReader(new FileReader(path));
 			while ((line = br.readLine()) != null) {
@@ -36,10 +38,25 @@ class RandomizedContraction {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return graph;
 	}
 	
-	public static int randomizedContraction(Graph graph) {
+	public static void readEdges() {
+		edgePool = new ArrayList<Edge>();
+		Vertex[] vertexs = graph.getVertexs();
+		for(Vertex vertex : vertexs) {
+			Edge edge = vertex.getFirstArc();
+			while(edge != null) {
+				// we just need one of two directions edge
+				if(edge.getFromVertex() < edge.getToVertex()) {
+					edgePool.add(edge);
+				}
+				edge = edge.getNextArc();
+			}
+		}
+	}
+	
+	public static int randomizedContraction() {
+
 		
 		return 0;
 	}
@@ -49,8 +66,10 @@ class RandomizedContraction {
 			System.err.println("Please input file path.");
 			System.exit(-1);
 		}
-		Graph graph = input(args[0]);
+		input(args[0]);
 		// graph.print();
-		System.out.println(randomizedContraction(graph));
+		readEdges();
+		// System.out.println(edgePool.size());
+		System.out.println(randomizedContraction());
 	}
 }
