@@ -29,7 +29,7 @@ public class Graph {
 	
 	public void print() {
 		for(Vertex vertex : vertexs) {
-			System.out.print(vertex.data + "\t");
+			System.out.print(vertex.getData() + "\t");
 			Edge edge = vertex.getFirstArc();
 			while(edge != null) {
 				System.out.print(edge.getToVertex() + "\t");

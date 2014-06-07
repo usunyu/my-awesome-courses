@@ -12,9 +12,10 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
-public class RandomizedContraction {
-	private static int DefaultSize = 200;
+class RandomizedContraction {
+	private static int DefaultSize = 8;
 	private static Graph graph;					// hold input graph
 	private static ArrayList<Edge> edgePool;	// edges for random select
 	
@@ -56,8 +57,55 @@ public class RandomizedContraction {
 	}
 	
 	public static int randomizedContraction() {
-
-		
+		int count = graph.getVertexs().length;
+		int size = edgePool.size();
+		Random seed = new Random();
+		int index, from, to, v;
+		Edge edge, e1, e2, temp;
+		Vertex fromVertex, toVertex, vertex;
+		while(count > 2) {	// contraction until left two vertices
+			do {
+				index = seed.nextInt(size);
+				edge = edgePool.get(index);
+			} while(!edge.isActive());	// chose a valid edge
+			edge.deactivate();	// do not chose next time
+			from = edge.getFromVertex();
+			to = edge.getToVertex();
+			fromVertex = graph.getVertexs()[from - 1];
+			toVertex = graph.getVertexs()[to - 1];
+			
+			// contract (from, to) -> from
+			toVertex.deactivate();
+			
+			// process to vertex's edge
+			e1 = toVertex.getFirstArc();
+			while(e1 != null) {
+				if(e1.getToVertex() == from) {
+					e1 = e1.getNextArc();
+					continue;
+				}
+				// set outgoing edge
+				temp = e1.getNextArc();
+				e1.setFromVertex(from);
+				e1.setNextArc(null);
+				fromVertex.addEdge(e1);
+				// set incoming edge
+				v = e1.getToVertex();
+				vertex = graph.getVertexs()[v - 1];
+				e2 = vertex.getFirstArc();
+				while(e2 != null) {
+					if(e2.getToVertex() == to) {
+						e2.setToVertex(from);
+						break;
+					}
+					e2 = e2.getNextArc();
+					//System.out.println(e2);
+				}
+				e1 = temp;
+			}
+			count--;
+			//System.out.println(count);
+		}
 		return 0;
 	}
 

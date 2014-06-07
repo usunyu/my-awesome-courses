@@ -19,6 +19,14 @@ public class Edge {
 		return to;
 	}
 	
+	public void setFromVertex(int from) {
+		this.from = from;
+	}
+	
+	public void setToVertex(int to) {
+		this.to = to;
+	}
+	
 	public Edge getNextArc() {
 		return nextArc;
 	}
@@ -33,5 +41,10 @@ public class Edge {
 	
 	public void deactivate() {
 		active = false;
+	}
+
+	@Override
+	public String toString() {
+		return "Edge [from=" + from + ", to=" + to + ", active=" + active + "]";
 	}
 }
