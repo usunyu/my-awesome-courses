@@ -1,38 +1,44 @@
+import java.util.ArrayList;
 
-public class Edge {
-	private int from;
-	private int to;
-	private Edge nextArc;
-	private boolean active;
+public class Vertex {
+	private boolean active;	// check whether contraction
+	private int data;
+	private Edge firstArc;
 	
-	public Edge(int from, int to) {
-		this.from = from;
-		this.to = to;
+	public Vertex(int data) {
+		this.data = data;
 		active = true;
 	}
 	
-	public int getFromVertex() {
-		return from;
+	public Edge getFirstArc() {
+		return firstArc;
 	}
 	
-	public int getToVertex() {
-		return to;
+	public int getData() {
+		return data;
 	}
 	
-	public void setFromVertex(int from) {
-		this.from = from;
+	public int getIndex() {
+		return data - 1;
 	}
 	
-	public void setToVertex(int to) {
-		this.to = to;
+	public void addEdges(ArrayList<Integer> edges) {
+		for(int e : edges) {
+			addEdge(e);
+		}
 	}
 	
-	public Edge getNextArc() {
-		return nextArc;
+	public void addEdge(int e) {
+		Edge edge = new Edge(data, e);
+		if(firstArc != null)
+			edge.setNextArc(firstArc);
+		firstArc = edge;
 	}
 	
-	public void setNextArc(Edge arc) {
-		nextArc = arc;
+	public void addEdge(Edge edge) {
+		if(firstArc != null)
+			edge.setNextArc(firstArc);
+		firstArc = edge;
 	}
 	
 	public boolean isActive() {
@@ -45,6 +51,6 @@ public class Edge {
 
 	@Override
 	public String toString() {
-		return "Edge [from=" + from + ", to=" + to + ", active=" + active + "]";
+		return "Vertex [active=" + active + ", data=" + data + "]";
 	}
 }
