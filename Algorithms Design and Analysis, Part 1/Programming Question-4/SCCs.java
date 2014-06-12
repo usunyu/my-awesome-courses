@@ -23,9 +23,11 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class SCCs {
-	private static Graph graph;					// hold input graph
+	private static Graph graph;		// hold input graph
+	private static Graph graphR;	// hold reverse graph
 	
 	public static void input(String path) {
+		System.out.println("Processing input file...");
 		BufferedReader br = null;
 		String line = null;
 		graph = new Graph();
@@ -40,12 +42,25 @@ public class SCCs {
 					graph.addVertex(data);
 				}
 				graph.addEdge(from, to);
-				if(graph.size() % 1000 == 0)
-					System.out.println((double)graph.size() / 875714 * 100 + "%");
 			}
 			br.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public static void generateReverseGraph() {
+		System.out.println("Generate reverse graph...");
+		graphR = new Graph();
+		for(int i = 1; i <= graph.size(); i++) {
+			graphR.addVertex(i);
+		}
+		for(Vertex v : graph.getVertices()) {
+			Edge e = v.getFirstArc();
+			while(e != null) {
+				graphR.addEdge(e.getToVertex(), e.getFromVertex());	// add reverse edge
+				e = e.getNextArc();
+			}
 		}
 	}
 	
@@ -55,6 +70,8 @@ public class SCCs {
 			System.exit(-1);
 		}
 		input(args[0]);
-		graph.print();
+		//graph.print();
+		generateReverseGraph();
+		//graphR.print();
 	}
 }
