@@ -12,12 +12,17 @@ public class Graph {
 		vertices.add(vertex);
 	}
 	
-	public void addEdges(int index, ArrayList<Integer> edges) {
-		vertices.get(index).addEdges(edges);
+	public void addEdge(int from, int to) {
+		Vertex vertex = vertices.get(from - 1);
+		vertex.addEdge(to);
 	}
 	
-	public ArrayList<Vertex> getVertexs() {
+	public ArrayList<Vertex> getVertices() {
 		return vertices;
+	}
+	
+	public int size() {
+		return vertices.size();
 	}
 	
 	public void print() {
@@ -30,5 +35,10 @@ public class Graph {
 			}
 			System.out.println();
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "Graph [vertices=" + vertices + "]";
 	}
 }

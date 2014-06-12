@@ -18,9 +18,43 @@ WARNING: This is the most challenging programming assignment of the course. Beca
 may have to manage memory carefully. The best way to do this depends on your programming language and environment, 
 and we strongly suggest that you exchange tips for doing this on the discussion forums.
 */
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class SCCs {
+	private static Graph graph;					// hold input graph
+	
+	public static void input(String path) {
+		BufferedReader br = null;
+		String line = null;
+		graph = new Graph();
+		try {
+			br = new BufferedReader(new FileReader(path));
+			while ((line = br.readLine()) != null) {
+				String[] nodes = line.split(" ");
+				int from = Integer.parseInt(nodes[0]);
+				int to = Integer.parseInt(nodes[1]);
+				while(from > graph.size()) {	// need create new vertex
+					int data = graph.size() + 1;
+					graph.addVertex(data);
+				}
+				graph.addEdge(from, to);
+				if(graph.size() % 1000 == 0)
+					System.out.println((double)graph.size() / 875714 * 100 + "%");
+			}
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
-		
+		if (args.length == 0) {
+			System.err.println("Please input file path.");
+			System.exit(-1);
+		}
+		input(args[0]);
+		graph.print();
 	}
 }
