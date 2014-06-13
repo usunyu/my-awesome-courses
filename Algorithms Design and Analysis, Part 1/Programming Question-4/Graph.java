@@ -21,13 +21,17 @@ public class Graph {
 		return vertices;
 	}
 	
+	public Vertex getVertex(int id) {
+		return vertices.get(id - 1);
+	}
+	
 	public int size() {
 		return vertices.size();
 	}
 	
 	public void print() {
 		for(Vertex vertex : vertices) {
-			System.out.print(vertex.getData() + "\t");
+			System.out.print(vertex.getId() + "\t");
 			Edge edge = vertex.getFirstArc();
 			while(edge != null) {
 				System.out.print(edge.getToVertex() + "\t");

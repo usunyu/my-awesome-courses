@@ -1,25 +1,52 @@
 public class Vertex {
-	private int data;
+	private int id;
+	private int otherId;	// new id assigned by first DFS
 	private Edge firstArc;
+	private boolean explored;
+	private Vertex leader;
 	
-	public Vertex(int data) {
-		this.data = data;
+	public Vertex(int id) {
+		this.id = id;
 	}
 	
 	public Edge getFirstArc() {
 		return firstArc;
 	}
 	
-	public int getData() {
-		return data;
+	public int getId() {
+		return id;
 	}
 	
 	public int getIndex() {
-		return data - 1;
+		return id - 1;
+	}
+	
+	public void setOtherId(int otherId) {
+		this.otherId = otherId;
+	}
+	
+	public int getOtherId() {
+		return otherId;
+	}
+	
+	public boolean isExplored() {
+		return explored;
+	}
+	
+	public void setExplored() {
+		explored = true;
+	}
+	
+	public Vertex getLeader() {
+		return leader;
+	}
+	
+	public void setLeader(Vertex leader) {
+		this.leader = leader;
 	}
 	
 	public void addEdge(int e) {
-		Edge edge = new Edge(data, e);
+		Edge edge = new Edge(id, e);
 		if(firstArc != null)
 			edge.setNextArc(firstArc);
 		firstArc = edge;
@@ -27,6 +54,6 @@ public class Vertex {
 	
 	@Override
 	public String toString() {
-		return "Vertex [data=" + data + "]";
+		return "Vertex [id=" + id + "]";
 	}
 }

@@ -21,12 +21,16 @@ and we strongly suggest that you exchange tips for doing this on the discussion 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.PriorityQueue;
 
-public class SCCs {
+class SCCs {
 	private static Graph graph;		// hold input graph
 	private static Graph graphR;	// hold reverse graph
+	private static int t;			// # of nodes processed so far
+	private static Vertex s;		// for leaders in 2nd process
+	private static PriorityQueue<Integer> heap;	// for scc
 	
-	public static void input(String path) {
+	private static void input(String path) {
 		System.out.println("Processing input file...");
 		BufferedReader br = null;
 		String line = null;
@@ -49,7 +53,7 @@ public class SCCs {
 		}
 	}
 	
-	public static void generateReverseGraph() {
+	private static void generateReverseGraph() {
 		System.out.println("Generate reverse graph...");
 		graphR = new Graph();
 		for(int i = 1; i <= graph.size(); i++) {
@@ -64,6 +68,47 @@ public class SCCs {
 		}
 	}
 	
+	private static void DFSLoop(Graph G, boolean flag) {
+		if(flag) {
+			System.out.println("First DFS-Loop...");
+			t = 0;
+		}
+		else {
+			System.out.println("Second DFS-Loop...");
+			s = null;
+			heap = new PriorityQueue<Integer>();
+		}
+		int n = G.size();
+		for(int id = n; id >= 1; id--) {
+			Vertex vertex = G.getVertex(id);
+			if(!vertex.isExplored()) {
+				if(!flag)
+					s = vertex;
+				DFS(G, vertex.getId(), flag);
+			}
+		}
+	}
+	
+	private static void DFS(Graph G, int id, boolean flag) { 
+		Vertex vertex = G.getVertex(id);
+		vertex.setExplored();
+		if(!flag)
+			vertex.setLeader(s);
+		Edge edge = vertex.getFirstArc();
+		while(edge != null) {
+			Vertex toVertex = G.getVertex(edge.getToVertex());
+			if(!toVertex.isExplored()) {
+				DFS(G, toVertex.getId(), flag);
+			}
+			edge = edge.getNextArc();
+		}
+		if(flag) {	// in the first DFS process
+			t++;
+			vertex = graph.getVertex(id);
+			vertex.setOtherId(t);
+		}
+	}
+	
 	public static void main(String[] args) {
 		if (args.length == 0) {
 			System.err.println("Please input file path.");
@@ -73,5 +118,7 @@ public class SCCs {
 		//graph.print();
 		generateReverseGraph();
 		//graphR.print();
+		DFSLoop(graphR, true);
+		DFSLoop(graph, false);
 	}
 }
