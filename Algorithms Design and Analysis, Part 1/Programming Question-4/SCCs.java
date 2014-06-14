@@ -21,14 +21,17 @@ and we strongly suggest that you exchange tips for doing this on the discussion 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 class SCCs {
 	private static Graph graph;		// hold input graph
 	private static Graph graphR;	// hold reverse graph
 	private static int t;			// # of nodes processed so far
 	private static Vertex s;		// for leaders in 2nd process
-	private static PriorityQueue<Integer> heap;	// for scc
+	private static Stack<Vertex> stack;	// for finish time
 	
 	private static void input(String path) {
 		System.out.println("Processing input file...");
@@ -68,45 +71,97 @@ class SCCs {
 		}
 	}
 	
-	private static void DFSLoop(Graph G, boolean flag) {
-		if(flag) {
-			System.out.println("First DFS-Loop...");
-			t = 0;
-		}
-		else {
-			System.out.println("Second DFS-Loop...");
-			s = null;
-			heap = new PriorityQueue<Integer>();
-		}
-		int n = G.size();
-		for(int id = n; id >= 1; id--) {
-			Vertex vertex = G.getVertex(id);
+	private static void firstDFSLoop() {
+		System.out.println("First DFS-Loop...");
+		t = 0;
+		stack = new Stack<Vertex>();
+		for(int id = graphR.size(); id >= 1; id--) {
+			Vertex vertex = graphR.getVertex(id);
 			if(!vertex.isExplored()) {
-				if(!flag)
-					s = vertex;
-				DFS(G, vertex.getId(), flag);
+				firstDFSProcess(vertex);
 			}
 		}
 	}
 	
-	private static void DFS(Graph G, int id, boolean flag) { 
-		Vertex vertex = G.getVertex(id);
+	private static void firstDFSProcess(Vertex vertex) {
 		vertex.setExplored();
-		if(!flag)
-			vertex.setLeader(s);
 		Edge edge = vertex.getFirstArc();
 		while(edge != null) {
-			Vertex toVertex = G.getVertex(edge.getToVertex());
+			Vertex toVertex = graphR.getVertex(edge.getToVertex());
 			if(!toVertex.isExplored()) {
-				DFS(G, toVertex.getId(), flag);
+				firstDFSProcess(toVertex);
 			}
 			edge = edge.getNextArc();
 		}
-		if(flag) {	// in the first DFS process
-			t++;
-			vertex = graph.getVertex(id);
-			vertex.setOtherId(t);
+		t++;
+		Vertex v = graph.getVertex(vertex.getId());
+		stack.push(v);
+	}
+	
+	private static void secondDFSLoop() {
+		System.out.println("Second DFS-Loop...");
+		s = null;
+		while(!stack.isEmpty()) {
+			Vertex vertex = stack.pop();
+			s = vertex;
+			if(!vertex.isExplored()) {
+				secondDFSProcess(vertex);
+			}
 		}
+	}
+	
+	private static void secondDFSProcess(Vertex vertex) {
+		vertex.setExplored();
+		vertex.setLeader(s);
+		Edge edge = vertex.getFirstArc();
+		while(edge != null) {
+			Vertex toVertex = graph.getVertex(edge.getToVertex());
+			if(!toVertex.isExplored()) {
+				secondDFSProcess(toVertex);
+			}
+			edge = edge.getNextArc();
+		}
+	}
+	
+	private static int[] SCC() {
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		for(Vertex vertex : graph.getVertices()) {
+			int leader = vertex.getLeaderId();
+			if(map.containsKey(leader)) {
+				map.put(leader, map.get(leader) + 1);
+			}
+			else {
+				map.put(leader, 1);
+			}
+		}
+		PriorityQueue<Integer> heap = new PriorityQueue<Integer>(10, new Comparator<Integer>() {
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				if(o1 > o2) return -1;
+				else if(o1 < o2) return 1;
+				else return 0;
+			}
+		});
+		
+		for(int v : map.values()) {
+			heap.add(v);
+		}
+		int[] result = new int[5];
+		int i = 0;
+		while(!heap.isEmpty() && i < result.length) {
+			int v = heap.poll();
+			result[i++] = v;
+		}
+		return result;
+	}
+	
+	private static void print(int[] result) {
+		for(int i = 0; i < result.length; i++) {
+			System.out.print(result[i]);
+			if(i < result.length - 1)
+				System.out.print(",");
+		}
+		System.out.println();
 	}
 	
 	public static void main(String[] args) {
@@ -118,7 +173,8 @@ class SCCs {
 		//graph.print();
 		generateReverseGraph();
 		//graphR.print();
-		DFSLoop(graphR, true);
-		DFSLoop(graph, false);
+		firstDFSLoop();
+		secondDFSLoop();
+		print(SCC());
 	}
 }

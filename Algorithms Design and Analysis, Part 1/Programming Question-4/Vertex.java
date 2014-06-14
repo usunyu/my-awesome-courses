@@ -1,6 +1,5 @@
 public class Vertex {
 	private int id;
-	private int otherId;	// new id assigned by first DFS
 	private Edge firstArc;
 	private boolean explored;
 	private Vertex leader;
@@ -21,14 +20,6 @@ public class Vertex {
 		return id - 1;
 	}
 	
-	public void setOtherId(int otherId) {
-		this.otherId = otherId;
-	}
-	
-	public int getOtherId() {
-		return otherId;
-	}
-	
 	public boolean isExplored() {
 		return explored;
 	}
@@ -39,6 +30,10 @@ public class Vertex {
 	
 	public Vertex getLeader() {
 		return leader;
+	}
+	
+	public int getLeaderId() {
+		return leader.getId();
 	}
 	
 	public void setLeader(Vertex leader) {
