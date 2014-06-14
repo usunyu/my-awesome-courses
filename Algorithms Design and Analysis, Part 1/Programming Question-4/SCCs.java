@@ -17,6 +17,8 @@ then write 0 for the remaining terms. Thus, if your algorithm computes only 3 SC
 WARNING: This is the most challenging programming assignment of the course. Because of the size of the graph you 
 may have to manage memory carefully. The best way to do this depends on your programming language and environment, 
 and we strongly suggest that you exchange tips for doing this on the discussion forums.
+
+JVM params to run with: -Xms512m -Xmx1024m -Xss256m
 */
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -26,7 +28,7 @@ import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
-class SCCs {
+public class SCCs {
 	private static Graph graph;		// hold input graph
 	private static Graph graphR;	// hold reverse graph
 	private static int t;			// # of nodes processed so far
