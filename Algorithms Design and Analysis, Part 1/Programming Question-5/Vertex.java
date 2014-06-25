@@ -1,6 +1,7 @@
 public class Vertex {
 	private int id;
 	private Edge firstArc;
+	private boolean covered;	// if the vertex has been covered by dijkstra algorithm
 	
 	public Vertex(int id) {
 		this.id = id;
@@ -16,6 +17,14 @@ public class Vertex {
 	
 	public int getIndex() {
 		return id - 1;
+	}
+	
+	public void setCovered() {
+		covered = true;
+	}
+	
+	public boolean isCovered() {
+		return covered;
 	}
 	
 	public void addEdge(int e, int l) {

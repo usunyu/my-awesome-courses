@@ -26,7 +26,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class DijkstraAlgorithm {
+	final private static int MAX_DISTANCE = 1000000;
 	private static Graph graph;		// hold input graph
+	private static int[] targets = {7,37,59,82,99,115,133,165,188,197}; 
 	
 	private static void input(String path) {
 		System.out.println("Processing input file...");
@@ -57,12 +59,73 @@ public class DijkstraAlgorithm {
 		}
 	}
 	
+	private static void updateNeighbours(Vertex vert, int[] dist) {
+		Edge edge = vert.getFirstArc();
+		while(edge != null) {
+			Vertex toVert = graph.getVertex(edge.getToVertex());
+			int newDist = dist[vert.getIndex()] + edge.getLength();
+			if(newDist < dist[toVert.getIndex()]) {
+				dist[toVert.getIndex()] = newDist;	// update
+			}
+			edge = edge.getNextArc();
+		}
+	}
+	
+	private static Vertex minVertex(int[] dist) {
+		int min = MAX_DISTANCE + 1, minId = -1;
+		for(int id = 1; id <= dist.length; id++) {
+			Vertex v = graph.getVertex(id);
+			if(v.isCovered())
+				continue;
+			if(dist[id - 1] < min) {
+				min = dist[id - 1];
+				minId = id;
+			}
+		}
+		return graph.getVertex(minId);
+	}
+	
+	private static int[] dijkstra() {
+		System.out.println("Running Dijkstra algorithm...");
+		int[] result = new int[targets.length];
+		// initial
+		Vertex source = graph.getVertex(1);
+		source.setCovered();
+		int[] dist = new int[graph.size()];
+		for(int i = 1; i < dist.length; i++)
+			dist[i] = MAX_DISTANCE;
+		int covered = 1;
+		Vertex last = source;	// record last added vertex
+		while(covered < graph.size()) {
+			updateNeighbours(last, dist);
+			Vertex min = minVertex(dist);
+			min.setCovered();
+			last = min;
+			covered++;
+		}
+		for(int i = 0; i < targets.length; i++) {
+			int id = targets[i];
+			result[i] = dist[id - 1];
+		}
+		return result;
+	}
+	
+	private static void print(int[] result) {
+		for(int i = 0; i < result.length; i++) {
+			System.out.print(result[i]);
+			if(i < result.length - 1)
+				System.out.print(",");
+		}
+		System.out.println();
+	}
+	
 	public static void main(String[] args) {
 		if (args.length == 0) {
 			System.err.println("Please input file path.");
 			System.exit(-1);
 		}
 		input(args[0]);
-		graph.print();
+		// graph.print();
+		print(dijkstra());
 	}
 }
