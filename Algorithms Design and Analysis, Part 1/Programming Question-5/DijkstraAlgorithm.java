@@ -21,9 +21,48 @@ algorithm should work fine. OPTIONAL: For those of you seeking an additional cha
 heap-based version. Note this requires a heap that supports deletions, and you'll probably need to maintain some 
 kind of mapping between vertices and their positions in the heap.
 */
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class DijkstraAlgorithm {
+	private static Graph graph;		// hold input graph
+	
+	private static void input(String path) {
+		System.out.println("Processing input file...");
+		BufferedReader br = null;
+		String line = null;
+		graph = new Graph();
+		try {
+			br = new BufferedReader(new FileReader(path));
+			while ((line = br.readLine()) != null) {
+				String[] nodes = line.split("\t");
+				int from = Integer.parseInt(nodes[0]);
+				
+				while(from > graph.size()) {	// need create new vertex
+					int data = graph.size() + 1;
+					graph.addVertex(data);
+				}
+				
+				for(int i = 1; i < nodes.length; i++) {
+					String[] tuples = nodes[i].split(",");
+					int to = Integer.parseInt(tuples[0]);
+					int length = Integer.parseInt(tuples[1]);
+					graph.addEdge(from, to, length);
+				}
+			}
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
-		
+		if (args.length == 0) {
+			System.err.println("Please input file path.");
+			System.exit(-1);
+		}
+		input(args[0]);
+		graph.print();
 	}
 }
