@@ -85,9 +85,17 @@ public class DijkstraAlgorithm {
 		return graph.getVertex(minId);
 	}
 	
+	private static int[] getResult(int[] dist) {
+		int[] result = new int[targets.length];
+		for(int i = 0; i < targets.length; i++) {
+			int id = targets[i];
+			result[i] = dist[id - 1];
+		}
+		return result;
+	}
+	
 	private static int[] dijkstra() {
 		System.out.println("Running Dijkstra algorithm...");
-		int[] result = new int[targets.length];
 		// initial
 		Vertex source = graph.getVertex(1);
 		source.setCovered();
@@ -103,11 +111,17 @@ public class DijkstraAlgorithm {
 			last = min;
 			covered++;
 		}
-		for(int i = 0; i < targets.length; i++) {
-			int id = targets[i];
-			result[i] = dist[id - 1];
-		}
-		return result;
+		return getResult(dist);
+	}
+	
+	private static int[] dijkstraWithHeap() {
+		System.out.println("Running Dijkstra algorithm with heap...");
+		// initial
+		Vertex source = graph.getVertex(1);
+		source.setCovered();
+		int[] dist = new int[graph.size()];
+		
+		return getResult(dist);
 	}
 	
 	private static void print(int[] result) {
