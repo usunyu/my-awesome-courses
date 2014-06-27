@@ -6,7 +6,7 @@ public class Vertex {
 	
 	public Vertex(int id) {
 		this.id = id;
-		dist = 1000000;
+		dist = Graph.MAX_DISTANCE;
 	}
 	
 	public Edge getFirstArc() {
@@ -43,9 +43,11 @@ public class Vertex {
 			edge.setNextArc(firstArc);
 		firstArc = edge;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Vertex [id=" + id + "]";
+		return "Vertex [id=" + id + ", dist=" + dist + "]";
+		// return "Vertex [id=" + id + ", dist=" + dist + ", covered=" + covered
+		//		+ "]";
 	}
 }

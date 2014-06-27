@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.HashMap;
 
 /*
 Implement Min-Heap associated with Vertex
@@ -7,16 +8,28 @@ Implement Min-Heap associated with Vertex
 public class Heap {
 	private Vertex[] heap;
 	private int size;
+	private HashMap<Integer, Integer> map;	// map id to index in heap
 	
 	public Heap(int capacity) {
 		heap = new Vertex[capacity];
+		map = new HashMap<Integer, Integer>();
 		size = 0;
 	}
 	
+	public boolean isEmpty() {
+		return size == 0;
+	}
+	
 	public void insert(Vertex vert) {
-		heap[size] = vert;
-		heapifyUp(size);
-		size++;
+		if(map.containsKey(vert.getId())) {	// already in the heap
+			heapifyUp(map.get(vert.getId()));
+		}
+		else {
+			heap[size] = vert;
+			map.put(vert.getId(), size);
+			heapifyUp(size);
+			size++;
+		}
 	}
 	
 	public Vertex extractMin() {
@@ -26,16 +39,17 @@ public class Heap {
 		size--;
 		heap[0] = heap[size];
 		heap[size] = null;	// clear
-		heapifyDown(0);
+		map.remove(min.getId());
+		if(size > 0) {
+			map.put(heap[0].getId(), 0);
+			heapifyDown(0);
+		}
 		return min;
 	}
 	
 	private int getParent(int index) {
-		int parent = (index - 1) / 2;
-		if(parent >= 0)
-			return parent;
-		else
-			return -1;
+		if(index == 0) return -1;
+		else return (index - 1) / 2;
 	}
 	
 	private int getLeftChild(int index) {
@@ -56,15 +70,21 @@ public class Heap {
 	
 	private void swap(int i, int j) {
 		Vertex tmp = heap[i];
+		// update map
+		map.put(heap[i].getId(), j);
+		map.put(heap[j].getId(), i);
+		// update heap
 		heap[i] = heap[j];
 		heap[j] = tmp;
 	}
 	
 	private void heapifyUp(int index) {
 		Vertex current = heap[index];
+		if(current == null)
+			System.out.println();
 		int p = getParent(index);
 		Vertex parent = (p == -1 ? null : heap[p]);
-		while(parent != null && parent.getDist() < current.getDist()) {
+		while(parent != null && parent.getDist() > current.getDist()) {
 			swap(index, p);
 			index = p;
 			p = getParent(index);

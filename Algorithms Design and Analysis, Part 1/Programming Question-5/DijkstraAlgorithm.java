@@ -26,7 +26,6 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class DijkstraAlgorithm {
-	final private static int MAX_DISTANCE = 1000000;
 	private static Graph graph;		// hold input graph
 	private static int[] targets = {7,37,59,82,99,115,133,165,188,197}; 
 	
@@ -72,7 +71,7 @@ public class DijkstraAlgorithm {
 	}
 	
 	private static Vertex minVertex(int[] dist) {
-		int min = MAX_DISTANCE + 1, minId = -1;
+		int min = Graph.MAX_DISTANCE + 1, minId = -1;
 		for(int id = 1; id <= dist.length; id++) {
 			Vertex v = graph.getVertex(id);
 			if(v.isCovered())
@@ -101,7 +100,7 @@ public class DijkstraAlgorithm {
 		source.setCovered();
 		int[] dist = new int[graph.size()];
 		for(int i = 1; i < dist.length; i++)
-			dist[i] = MAX_DISTANCE;
+			dist[i] = Graph.MAX_DISTANCE;
 		int covered = 1;
 		Vertex last = source;	// record last added vertex
 		while(covered < graph.size()) {
@@ -114,13 +113,40 @@ public class DijkstraAlgorithm {
 		return getResult(dist);
 	}
 	
+	private static void updateNeighbours(Vertex vert, Heap heap) {
+		Edge edge = vert.getFirstArc();
+		while(edge != null) {
+			Vertex toVert = graph.getVertex(edge.getToVertex());
+			if(toVert.isCovered()) {
+				edge = edge.getNextArc();
+				continue;
+			}
+			int newDist = vert.getDist() + edge.getLength();
+			if(newDist < toVert.getDist())
+				toVert.setDist(newDist);
+			heap.insert(toVert);
+			edge = edge.getNextArc();
+		}
+	}
+	
 	private static int[] dijkstraWithHeap() {
 		System.out.println("Running Dijkstra algorithm with heap...");
 		// initial
 		Vertex source = graph.getVertex(1);
-		source.setCovered();
+		source.setDist(0);
+		Heap heap = new Heap(graph.size());
+		heap.insert(source);
+		int covered = 1;
 		int[] dist = new int[graph.size()];
-		
+		for(int i = 1; i < dist.length; i++)
+			dist[i] = Graph.MAX_DISTANCE;
+		while(covered < graph.size()) {
+			Vertex min = heap.extractMin();
+			dist[min.getIndex()] = min.getDist();
+			min.setCovered();
+			updateNeighbours(min, heap);
+			covered++;
+		}
 		return getResult(dist);
 	}
 	
@@ -140,6 +166,30 @@ public class DijkstraAlgorithm {
 		}
 		input(args[0]);
 		// graph.print();
-		print(dijkstra());
+		// print(dijkstra());
+		
+		// test heap function
+		/*
+		Heap heap = new Heap(5);
+		Vertex[] vertices = new Vertex[5];
+		for(int i = 0; i < 5; i++) {
+			vertices[i] = new Vertex(i + 1);
+		}
+		vertices[0].setDist(3);
+		vertices[1].setDist(4);
+		vertices[2].setDist(5);
+		vertices[3].setDist(1);
+		vertices[4].setDist(2);
+		for(int i = 0; i < 5; i++) {
+			heap.insert(vertices[i]);
+		}
+		vertices[2].setDist(0);
+		heap.insert(vertices[2]);
+		while(!heap.isEmpty()) {
+			System.out.println(heap.extractMin());
+		}
+		*/
+		print(dijkstraWithHeap());
 	}
 }
+

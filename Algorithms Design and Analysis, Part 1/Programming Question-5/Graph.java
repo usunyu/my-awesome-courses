@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Graph {
+	final public static int MAX_DISTANCE = 1000000;
 	private ArrayList<Vertex> vertices;
 	
 	public Graph() {
