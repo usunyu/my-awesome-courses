@@ -49,7 +49,8 @@ public class TwoSumVariant {
 			for(long i : numbers) {
 				long need = target - i;
 				if(set.contains(need)) {
-					count++;
+					if(need != i)
+						count++;
 					break;
 				}
 				set.add(i);
