@@ -27,11 +27,15 @@ sigma = zeros(1, size(X, 2));
 %       
 
 
+N = size(X, 2);                                % number of features
+for i=1:N
+	feature = X(:, i);                         % get ith feature/column
+	mu(i) = mean(feature);                     % ith feature mean
+	sigma(i) = std(feature);                   % ith feature standard deviation
 
+	X_norm(:, i) = (feature - mu(i)) / sigma(i); % replace normalized feature
 
-
-
-
+end
 
 
 % ============================================================
