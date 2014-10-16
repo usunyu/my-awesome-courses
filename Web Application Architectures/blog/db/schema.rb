@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20141010080921) do
 
-  create_table "coments", force: true do |t|
+  create_table "comments", force: true do |t|
     t.integer  "post_id"
     t.text     "body"
     t.datetime "created_at"
