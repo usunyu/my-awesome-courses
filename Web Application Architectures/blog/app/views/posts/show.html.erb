@@ -12,17 +12,10 @@
 
 <h2>Comments</h2>
 <div id="comments">
-	<% @post.comments.each do |comment| %>
-		<%= div_for comment do %>
-		<p>
-			<strong>Posted <%= time_ago_in_words(comment.created_at) %></strong><br />
-			<%= h(comment.body) %>
-		</p>
-		<% end %>
-	<% end %>
+	<%= render :partial => @post.comments.reverse %>
 </div>
 
-<%= form_for([@post, Comment.new]) do |f| %>
+<%= form_for([@post, Comment.new], remote: true) do |f| %>
 	<p>
 		<%= f.label :body, "New Comment" %><br />
 		<%= f.text_area :body %>
