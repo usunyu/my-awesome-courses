@@ -1,7 +1,7 @@
-Coursera
-========
+MyCourses
+=========
 
-Course Projects and Homework from Coursera
+Learn by doing course projects
 
 * Programming Questions for [Algorithms: Design and Analysis, Part 1](https://class.coursera.org/algo-005)
 * Exercises and Programming Assignments for [Algorithms, Part I](https://class.coursera.org/algs4partI-004)
