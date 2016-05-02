@@ -7,3 +7,4 @@ Learn by doing course projects
 * Exercises and Programming Assignments for [Algorithms, Part I](https://class.coursera.org/algs4partI-004)
 * Programming Exercises for [Machine Learning](https://class.coursera.org/ml-006)
 * Programming Assignment for [Web Application Architectures](https://class.coursera.org/webapplications-002)
+* Demo for [Programming with UDP sockets](https://www.cs.rutgers.edu/~pxk/417/notes/sockets/udp.html)
