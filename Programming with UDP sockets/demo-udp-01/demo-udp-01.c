@@ -11,7 +11,7 @@
 #include <stdlib.h>	/* defines exit and other sys calls */
 #include <sys/socket.h>
 
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	int fd;
 
