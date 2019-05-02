@@ -1,5 +1,5 @@
-MyCourses
-=========
+My Awesome Courses
+==================
 
 Learn by doing course projects
 
