@@ -8,4 +8,6 @@ Learn by doing course projects
 * Programming Exercises for [Machine Learning](https://class.coursera.org/ml-006)
 * Programming Assignment for [Web Application Architectures](https://class.coursera.org/webapplications-002)
 * Demo for [Programming with UDP sockets](https://www.cs.rutgers.edu/~pxk/417/notes/sockets/udp.html)
-* Labs for [Supervised Machine Learning: Regression and Classification](https://www.coursera.org/learn/machine-learning)
+* Labs and Assignments for [Linear Algebra for Machine Learning and Data Science](https://www.coursera.org/learn/machine-learning-linear-algebra)
+* Labs and Assignments for [Calculus for Machine Learning and Data Science](https://www.coursera.org/learn/machine-learning-calculus)
+* Labs and Assignments for [Supervised Machine Learning: Regression and Classification](https://www.coursera.org/learn/machine-learning)
