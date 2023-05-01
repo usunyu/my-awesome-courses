@@ -32,6 +32,7 @@ jax==0.4.8
 jaxlib==0.4.7
 jedi==0.18.2
 Jinja2==3.1.2
+joblib==1.2.0
 jsonpointer==2.3
 jsonschema==4.17.3
 jupyter-events==0.6.3
@@ -81,6 +82,7 @@ PyYAML==6.0
 pyzmq==25.0.2
 rfc3339-validator==0.1.4
 rfc3986-validator==0.1.1
+scikit-learn==1.2.2
 scipy==1.10.1
 Send2Trash==1.8.0
 six==1.16.0
@@ -89,6 +91,7 @@ soupsieve==2.4.1
 stack-data==0.6.2
 sympy==1.11.1
 terminado==0.17.1
+threadpoolctl==3.1.0
 tinycss2==1.2.1
 tornado==6.3.1
 traitlets==5.9.0
