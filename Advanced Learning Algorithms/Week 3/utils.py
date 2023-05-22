@@ -371,3 +371,16 @@ def train_plot_learning_curve(model, x_train, y_train, x_cv, y_cv, degree= 1, ba
     plt.ylabel("MSE"); 
     plt.legend()
     plt.show()
+
+
+from sklearn import datasets
+
+
+def load_data():
+    iris = datasets.load_iris()
+    X = iris.data[:, :2]  # we only take the first two features.
+    y = iris.target
+
+    X = X[y != 2] # only two classes
+    y = y[y != 2]
+    return X, y

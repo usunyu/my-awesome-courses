@@ -1,7 +1,6 @@
 # see https://matplotlib.org/stable/tutorials/introductory/customizing.html
 lines.linewidth: 4
 lines.solid_capstyle: butt
-lines.markersize: 12
 
 legend.fancybox: true
 
@@ -48,7 +47,6 @@ savefig.facecolor: f0f0f0
 
 #figure.facecolor: f0f0f0  # grey
 figure.facecolor: ffffff  # white
-figure.figsize: 12,8
 
 ## ***************************************************************************
 ## * FONT                                                                    *
@@ -107,7 +105,7 @@ font.style:   normal
 font.variant: normal
 font.weight:  normal
 font.stretch: normal
-font.size:    12.0
+font.size:    8.0
 
 font.serif:      DejaVu Serif, Bitstream Vera Serif, Computer Modern Roman, New Century Schoolbook, Century Schoolbook L, Utopia, ITC Bookman, Bookman, Nimbus Roman No9 L, Times New Roman, Times, Palatino, Charter, serif
 font.sans-serif: Verdana, DejaVu Sans, Bitstream Vera Sans, Computer Modern Sans Serif, Lucida Grande, Geneva, Lucid, Arial, Helvetica, Avant Garde, sans-serif
@@ -123,3 +121,4 @@ font.monospace:  DejaVu Sans Mono, Bitstream Vera Sans Mono, Computer Modern Typ
 ## See https://matplotlib.org/api/artist_api.html#module-matplotlib.text
 ## for more information on text properties
 #text.color: black
+
