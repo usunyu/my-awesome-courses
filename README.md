@@ -11,6 +11,7 @@ Learn by doing course projects
 ## Mathematics for Machine Learning and Data Science Specialization
 * Labs and Assignments for [Linear Algebra for Machine Learning and Data Science](https://www.coursera.org/learn/machine-learning-linear-algebra)
 * Labs and Assignments for [Calculus for Machine Learning and Data Science](https://www.coursera.org/learn/machine-learning-calculus)
+* Labs and Assignments for [Probability & Statistics for Machine Learning & Data Science](https://www.coursera.org/learn/machine-learning-probability-and-statistics)
 ## Machine Learning Specialization
 * Labs and Assignments for [Supervised Machine Learning: Regression and Classification](https://www.coursera.org/learn/machine-learning)
 * Labs and Assignments for [Advanced Learning Algorithms](https://www.coursera.org/learn/advanced-learning-algorithms)
