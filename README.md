@@ -8,6 +8,7 @@ Learn by doing course projects
 * Programming Assignment for [Web Application Architectures](https://class.coursera.org/webapplications-002)
 * Demo Projects for [Programming with UDP sockets](https://www.cs.rutgers.edu/~pxk/417/notes/sockets/udp.html)
 * Programming Exercises for [Machine Learning](https://class.coursera.org/ml-006)
+* Homework for [Machine Learning Foundations - Mathematical Foundations](https://www.coursera.org/learn/ntumlone-mathematicalfoundations)
 ## Mathematics for Machine Learning and Data Science Specialization
 * Labs and Assignments for [Linear Algebra for Machine Learning and Data Science](https://www.coursera.org/learn/machine-learning-linear-algebra)
 * Labs and Assignments for [Calculus for Machine Learning and Data Science](https://www.coursera.org/learn/machine-learning-calculus)
