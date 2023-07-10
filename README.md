@@ -12,6 +12,7 @@ Learn by doing course projects
 
 ## Mathematics for Machine Learning Specialization
 * Lab and Assignment for [Mathematics for Machine Learning: Linear Algebra](https://www.coursera.org/learn/linear-algebra-machine-learning)
+* Lab and Assignment for [Mathematics for Machine Learning: Multivariate Calculus](https://www.coursera.org/learn/multivariate-calculus-machine-learning)
 
 ## Mathematics for Machine Learning and Data Science Specialization
 * Lab and Assignment for [Linear Algebra for Machine Learning and Data Science](https://www.coursera.org/learn/machine-learning-linear-algebra)
