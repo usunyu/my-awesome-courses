@@ -10,14 +10,14 @@ Learn by doing course projects
 * Programming Exercises for [Machine Learning](https://class.coursera.org/ml-006)
 * Homework for [Machine Learning Foundations - Mathematical Foundations](https://www.coursera.org/learn/ntumlone-mathematicalfoundations)
 
-## Mathematics for Machine Learning Specialization
-* Lab and Assignment for [Mathematics for Machine Learning: Linear Algebra](https://www.coursera.org/learn/linear-algebra-machine-learning)
-* Lab and Assignment for [Mathematics for Machine Learning: Multivariate Calculus](https://www.coursera.org/learn/multivariate-calculus-machine-learning)
-
 ## Mathematics for Machine Learning and Data Science Specialization
 * Lab and Assignment for [Linear Algebra for Machine Learning and Data Science](https://www.coursera.org/learn/machine-learning-linear-algebra)
 * Lab and Assignment for [Calculus for Machine Learning and Data Science](https://www.coursera.org/learn/machine-learning-calculus)
 * Lab and Assignment for [Probability & Statistics for Machine Learning & Data Science](https://www.coursera.org/learn/machine-learning-probability-and-statistics)
+
+## Mathematics for Machine Learning Specialization
+* Lab and Assignment for [Mathematics for Machine Learning: Linear Algebra](https://www.coursera.org/learn/linear-algebra-machine-learning)
+* Lab and Assignment for [Mathematics for Machine Learning: Multivariate Calculus](https://www.coursera.org/learn/multivariate-calculus-machine-learning)
 
 ## Statistics with Python Specialization
 * Python Labs for [Understanding and Visualizing Data with Python](https://www.coursera.org/learn/understanding-visualization-data)
