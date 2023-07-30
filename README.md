@@ -9,6 +9,7 @@ Learn by doing course projects
 * Demo Projects for [Programming with UDP sockets](https://www.cs.rutgers.edu/~pxk/417/notes/sockets/udp.html)
 * Programming Exercises for [Machine Learning](https://class.coursera.org/ml-006)
 * Homework for [Machine Learning Foundations - Mathematical Foundations](https://www.coursera.org/learn/ntumlone-mathematicalfoundations)
+* Lab and Project for [Specialized Models: Time Series and Survival Analysis](https://www.coursera.org/learn/time-series-survival-analysis/)
 
 ## Mathematics for Machine Learning and Data Science Specialization
 * Lab and Assignment for [Linear Algebra for Machine Learning and Data Science](https://www.coursera.org/learn/machine-learning-linear-algebra)
