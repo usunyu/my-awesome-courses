@@ -24,6 +24,7 @@ Learn by doing course projects
 ## Statistics with Python Specialization
 * Python Labs for [Understanding and Visualizing Data with Python](https://www.coursera.org/learn/understanding-visualization-data)
 * Python Labs for [Inferential Statistical Analysis with Python](https://www.coursera.org/learn/inferential-statistical-analysis-python)
+* Python Labs for [Fitting Statistical Models to Data with Python](https://www.coursera.org/learn/fitting-statistical-models-data-python)
 
 ## Machine Learning Specialization
 * Lab and Assignment for [Supervised Machine Learning: Regression and Classification](https://www.coursera.org/learn/machine-learning)
